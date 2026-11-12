@@ -1,111 +1,240 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    min-height: 100vh;
-    background: #090909;
-    color: #fff;
-    font-family: Arial, sans-serif;
+html {
+    scroll-behavior: smooth;
 }
 
 header {
-    height: 75px;
-    padding: 0 8%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #111;
-    border-bottom: 1px solid #292929;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
-.logo {
-    font-size: 23px;
-    font-weight: 900;
-}
-
-.logo span {
-    color: #e50914;
-    margin-left: 5px;
-}
-
-#status {
+nav a,
+footer a {
     color: #aaa;
+    text-decoration: none;
     font-size: 13px;
 }
 
-main {
-    width: 100%;
-    max-width: 520px;
-    margin: 80px auto;
-    padding: 20px;
+nav a:hover,
+footer a:hover {
+    color: #e50914;
 }
 
-.panel {
+.hero {
+    min-height: 530px;
+    display: flex;
+    align-items: center;
+    padding: 70px 10%;
+    background:
+        radial-gradient(ellipse at 80% 50%, #450b10 0%, transparent 55%),
+        #090909;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.tag {
+    color: #e50914;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.hero h1 {
+    font-size: clamp(38px, 7vw, 75px);
+    margin: 25px 0;
+}
+
+.hero h1 span {
+    color: #e50914;
+}
+
+.hero p,
+.section-description {
+    color: #999;
+    line-height: 1.7;
+    max-width: 550px;
+}
+
+.main-button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 15px 28px;
+    background: #e50914;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.features,
+.pricing,
+.terms {
+    padding: 75px 8%;
+    text-align: center;
+}
+
+.features h2,
+.pricing h2,
+.terms h2 {
+    font-size: 30px;
+    margin: 15px 0 35px;
+}
+
+.feature-grid,
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    max-width: 1100px;
+    margin: 30px auto;
+}
+
+.feature-card,
+.price-card {
     background: #121212;
     border: 1px solid #292929;
-    border-radius: 12px;
-    padding: 35px;
-    box-shadow: 0 0 30px #000;
+    border-radius: 10px;
+    padding: 28px 20px;
+    text-align: left;
 }
 
-h1 {
-    font-size: 27px;
-    margin-bottom: 12px;
+.feature-card h3,
+.price-card h3 {
+    margin-bottom: 15px;
 }
 
-p {
-    color: #aaa;
-    margin-bottom: 20px;
+.feature-card p,
+.price-card p {
+    color: #999;
+    line-height: 1.6;
 }
 
-input {
-    width: 100%;
-    padding: 15px;
-    margin: 9px 0;
-    background: #080808;
-    border: 1px solid #333;
-    border-radius: 7px;
-    color: white;
-    outline: none;
+.pricing {
+    background: #0d0d0d;
 }
 
-input:focus {
-    border-color: #e50914;
+.price-card {
+    text-align: center;
 }
 
-button {
-    width: 100%;
-    padding: 14px;
-    margin-top: 12px;
-    border: none;
-    border-radius: 7px;
-    background: #e50914;
-    color: white;
+.price-card h3 {
+    font-size: 22px;
+}
+
+.duration {
+    color: #e50914;
+    font-size: 25px;
     font-weight: bold;
-    cursor: pointer;
+    margin: 20px 0;
 }
 
-button:hover {
+.price-card a {
+    display: block;
+    padding: 13px;
+    margin-top: 22px;
+    background: #e50914;
+    border-radius: 6px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.price-card a:hover,
+.main-button:hover {
     background: #b80710;
 }
 
-button.secondary {
-    background: #292929;
+.featured {
+    border-color: #e50914;
+    position: relative;
 }
 
-button.secondary:hover {
-    background: #3b3b3b;
+.popular {
+    color: #e50914;
+    font-size: 11px;
+    letter-spacing: 2px;
 }
 
-.hidden {
-    display: none;
+.terms {
+    background: #101010;
+}
+
+.terms-content {
+    max-width: 850px;
+    margin: auto;
+    text-align: left;
+    background: #151515;
+    border: 1px solid #292929;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.terms-content h3 {
+    color: #e50914;
+    margin: 24px 0 10px;
+}
+
+.terms-content h3:first-child {
+    margin-top: 0;
+}
+
+.terms-content p {
+    color: #aaa;
+    line-height: 1.8;
+}
+
+.account-area {
+    max-width: 600px;
+    margin: 70px auto;
+    padding: 20px;
+}
+
+.account-area .panel {
+    margin-bottom: 20px;
 }
 
 footer {
+    padding: 35px 20px;
     text-align: center;
-    color: #555;
-    padding: 30px;
+    background: #080808;
+    border-top: 1px solid #292929;
+}
+
+footer p {
+    margin: 15px 0;
+}
+
+@media (max-width: 600px) {
+    header {
+        height: auto;
+        padding: 18px;
+    }
+
+    nav {
+        gap: 13px;
+    }
+
+    .hero {
+        padding: 65px 22px;
+    }
+
+    .features,
+    .pricing,
+    .terms {
+        padding: 55px 18px;
+    }
+
+    .terms-content {
+        padding: 20px;
+    }
 }
