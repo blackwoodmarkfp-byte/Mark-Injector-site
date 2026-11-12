@@ -9,59 +9,219 @@
     <script src="config.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo">MARK<span>INJECTOR</span></div>
-        <div id="status">Не авторизован</div>
-    </header>
 
-    <main>
-        <section class="panel" id="authPanel">
-            <h1>Добро пожаловать</h1>
-            <p>Войдите в аккаунт или создайте новый</p>
+<header>
+    <div class="logo">MARK<span>INJECTOR</span></div>
 
-            <input id="email" type="email" placeholder="Email">
-            <input id="password" type="password" placeholder="Пароль">
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#pricing">Тарифы</a>
+        <a href="#terms">Условия</a>
+        <a href="#authPanel">Аккаунт</a>
+    </nav>
+</header>
 
-            <button onclick="login()">Войти</button>
-            <button class="secondary" onclick="register()">Регистрация</button>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="tag">MARK INJECTOR</span>
+        <h1>WELCOME TO<br><span>MARK INJECTOR</span></h1>
 
-            <p id="authMessage"></p>
-        </section>
+        <p>
+            Официальная страница проекта MARK Injector.
+            Информация о доступе, тарифах и условиях использования.
+        </p>
 
-        <section class="panel hidden" id="accountPanel">
-            <h1>Личный кабинет</h1>
-            <p id="accountEmail"></p>
-            <p>Ваша роль: <strong id="accountRole"></strong></p>
+        <a href="#pricing" class="main-button">Выбрать тариф</a>
+    </div>
+</section>
 
-            <button id="downloadButton" class="hidden" onclick="downloadInjector()">
-                Скачать MARK Injector
-            </button>
+<section class="features">
+    <h2>ВОЗМОЖНОСТИ</h2>
 
-            <p id="downloadMessage"></p>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>01 / Лицензии</h3>
+            <p>Различные сроки доступа к продукту.</p>
+        </div>
 
-            <button class="secondary" onclick="logout()">Выйти</button>
-        </section>
+        <div class="feature-card">
+            <h3>02 / Личный кабинет</h3>
+            <p>Управление своим аккаунтом и доступом.</p>
+        </div>
 
-        <section class="panel hidden" id="adminPanel">
-            <h1>Админ-панель</h1>
-            <p>Управление доступом пользователей</p>
+        <div class="feature-card">
+            <h3>03 / Поддержка</h3>
+            <p>Информация о покупке и использовании.</p>
+        </div>
+    </div>
+</section>
 
-            <input id="targetEmail" type="email" placeholder="Email пользователя">
+<section class="pricing" id="pricing">
+    <span class="tag">LICENSE STORE</span>
+    <h2>ВЫБЕРИ СВОЙ ТАРИФ</h2>
+    <p class="section-description">
+        Покупка осуществляется через FunPay.
+        Актуальная цена отображается на странице предложения.
+    </p>
 
-            <button onclick="manageBuyer('grant_buyer')">
-                Выдать Buyer
-            </button>
+    <div class="price-grid">
 
-            <button class="secondary" onclick="manageBuyer('revoke_buyer')">
-                Забрать Buyer
-            </button>
+        <div class="price-card">
+            <h3>1 DAY</h3>
+            <div class="duration">24 часа</div>
+            <p>Доступ на один день</p>
+            <a href="https://funpay.com/lots/offer?id=81682747"
+               target="_blank" rel="noopener noreferrer">
+                Купить на FunPay
+            </a>
+        </div>
 
-            <p id="adminMessage"></p>
-        </section>
-    </main>
+        <div class="price-card">
+            <h3>7 DAYS</h3>
+            <div class="duration">168 часов</div>
+            <p>Доступ на семь дней</p>
+            <a href="https://funpay.com/lots/offer?id=81682824"
+               target="_blank" rel="noopener noreferrer">
+                Купить на FunPay
+            </a>
+        </div>
 
-    <footer>© 2026 MARK Injector</footer>
+        <div class="price-card">
+            <h3>14 DAYS</h3>
+            <div class="duration">336 часов</div>
+            <p>Доступ на четырнадцать дней</p>
+            <a href="https://funpay.com/lots/offer?id=81683393"
+               target="_blank" rel="noopener noreferrer">
+                Купить на FunPay
+            </a>
+        </div>
 
-    <script src="app.js"></script>
+        <div class="price-card featured">
+            <span class="popular">LIFETIME</span>
+            <h3>FOREVER</h3>
+            <div class="duration">Навсегда</div>
+            <p>Бессрочный доступ по условиям предложения</p>
+            <a href="https://funpay.com/lots/offer?id=81683609"
+               target="_blank" rel="noopener noreferrer">
+                Купить на FunPay
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<section class="terms" id="terms">
+    <span class="tag">IMPORTANT INFORMATION</span>
+    <h2>УСЛОВИЯ ИСПОЛЬЗОВАНИЯ</h2>
+
+    <div class="terms-content">
+        <h3>1. Общие положения</h3>
+        <p>
+            Используя MARK Injector, пользователь подтверждает,
+            что ознакомился с настоящими условиями.
+        </p>
+
+        <h3>2. Стороннее программное обеспечение</h3>
+        <p>
+            Продукт является сторонним программным обеспечением
+            и не является официальным продуктом разработчиков
+            Dead by Daylight.
+        </p>
+
+        <h3>3. Риски использования</h3>
+        <p>
+            Использование стороннего программного обеспечения
+            может нарушать правила игры. Античит может обнаружить
+            такое ПО. Возможны ограничения или блокировка игрового
+            аккаунта, включая постоянную блокировку.
+        </p>
+
+        <h3>4. Лицензии</h3>
+        <p>
+            Срок доступа определяется выбранным тарифом:
+            1 день, 7 дней, 14 дней или бессрочный доступ.
+            Условия конкретной покупки указаны на FunPay.
+        </p>
+
+        <h3>5. Безопасность аккаунта</h3>
+        <p>
+            Не передавайте пароль от своего аккаунта третьим лицам.
+            Используйте только собственную учётную запись.
+        </p>
+
+        <h3>6. Покупка</h3>
+        <p>
+            Оплата производится на FunPay. Перед покупкой
+            внимательно прочитайте описание предложения,
+            проверьте платформу и срок доступа.
+        </p>
+
+        <h3>7. Изменение условий</h3>
+        <p>
+            Условия могут обновляться. Перед использованием
+            рекомендуется ознакомиться с актуальной версией.
+        </p>
+    </div>
+</section>
+
+<main class="account-area">
+
+    <section class="panel" id="authPanel">
+        <h2>ЛИЧНЫЙ КАБИНЕТ</h2>
+        <p>Войдите или создайте аккаунт</p>
+
+        <input id="email" type="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Пароль">
+
+        <button onclick="login()">Войти</button>
+        <button class="secondary" onclick="register()">Регистрация</button>
+
+        <p id="authMessage"></p>
+    </section>
+
+    <section class="panel hidden" id="accountPanel">
+        <h2>ЛИЧНЫЙ КАБИНЕТ</h2>
+
+        <p id="accountEmail"></p>
+        <p>Роль: <strong id="accountRole"></strong></p>
+
+        <button id="downloadButton" class="hidden"
+                onclick="downloadInjector()">
+            Скачать MARK Injector
+        </button>
+
+        <p id="downloadMessage"></p>
+
+        <button class="secondary" onclick="logout()">Выйти</button>
+    </section>
+
+    <section class="panel hidden" id="adminPanel">
+        <h2>АДМИН-ПАНЕЛЬ</h2>
+
+        <input id="targetEmail"
+               type="email"
+               placeholder="Email пользователя">
+
+        <button onclick="manageBuyer('grant_buyer')">
+            Выдать Buyer
+        </button>
+
+        <button class="secondary"
+                onclick="manageBuyer('revoke_buyer')">
+            Забрать Buyer
+        </button>
+
+        <p id="adminMessage"></p>
+    </section>
+
+</main>
+
+<footer>
+    <div class="logo">MARK<span>INJECTOR</span></div>
+    <p>© 2026 MARK Injector. All rights reserved.</p>
+    <a href="#terms">Условия использования</a>
+</footer>
+
+<script src="app.js"></script>
 </body>
 </html>
