@@ -7,6 +7,8 @@ const authPanel = document.getElementById("authPanel");
 const accountPanel = document.getElementById("accountPanel");
 const adminPanel = document.getElementById("adminPanel");
 
+let loadingAccount = false;
+
 async function register() {
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
@@ -17,7 +19,8 @@ async function register() {
     });
 
     document.getElementById("authMessage").textContent =
-        error ? error.message : "Регистрация успешна. Проверьте почту, если требуется подтверждение.";
+        error ? error.message :
+        "Регистрация успешна. Проверьте почту, если требуется подтверждение.";
 }
 
 async function login() {
@@ -43,39 +46,82 @@ async function logout() {
 }
 
 async function loadAccount() {
-    const { data: { user } } = await supabaseClient.auth.getUser();
+    if (loadingAccount) return;
+    loadingAccount = true;
 
-    if (!user) return;
+    try {
+        adminPanel.classList.add("hidden");
+        accountPanel.classList.add("hidden");
+        authPanel.classList.remove("hidden");
 
-    const { data: profile, error } = await supabaseClient
-        .from("profiles")
-        .select("role")
-        .eq("id", user.id)
-        .single();
+        document.getElementById("downloadButton").classList.add("hidden");
 
-    if (error || !profile) {
-        alert("Не удалось загрузить профиль");
-        return;
-    }
+        const { data: { user }, error: authError } =
+            await supabaseClient.auth.getUser();
 
-    authPanel.classList.add("hidden");
-    accountPanel.classList.remove("hidden");
+        if (authError || !user) {
+            document.getElementById("status").textContent = "Не авторизован";
+            return;
+        }
 
-    document.getElementById("status").textContent = "Авторизован";
-    document.getElementById("accountEmail").textContent = user.email;
-    document.getElementById("accountRole").textContent = profile.role;
+        const { data: profile, error } = await supabaseClient
+            .from("profiles")
+            .select("role")
+            .eq("id", user.id)
+            .maybeSingle();
 
-    if (profile.role === "buyer" || profile.role === "admin") {
-        document.getElementById("downloadButton").classList.remove("hidden");
-    }
+        if (error) {
+            console.error("Profile error:", error);
+            document.getElementById("status").textContent =
+                "Ошибка загрузки роли: " + error.message;
+            return;
+        }
 
-    if (profile.role === "admin") {
-        adminPanel.classList.remove("hidden");
+        if (!profile) {
+            document.getElementById("status").textContent =
+                "Профиль не найден";
+            return;
+        }
+
+        const role = String(profile.role || "user").toLowerCase();
+
+        authPanel.classList.add("hidden");
+        accountPanel.classList.remove("hidden");
+
+        document.getElementById("status").textContent = "Авторизован";
+        document.getElementById("accountEmail").textContent = user.email;
+
+        const roleNames = {
+            user: "User",
+            buyer: "Buyer",
+            admin: "Admin"
+        };
+
+        document.getElementById("accountRole").textContent =
+            roleNames[role] || role;
+
+        if (role === "buyer" || role === "admin") {
+            document.getElementById("downloadButton")
+                .classList.remove("hidden");
+        }
+
+        if (role === "admin") {
+            adminPanel.classList.remove("hidden");
+        }
+
+        console.log("MARK Injector role:", role);
+
+    } catch (error) {
+        console.error(error);
+        document.getElementById("status").textContent = error.message;
+    } finally {
+        loadingAccount = false;
     }
 }
 
 async function callAdminFunction(action, email = null) {
-    const { data: { session } } = await supabaseClient.auth.getSession();
+    const { data: { session } } =
+        await supabaseClient.auth.getSession();
 
     if (!session) {
         throw new Error("Необходимо войти в аккаунт");
@@ -128,10 +174,8 @@ async function downloadInjector() {
     }
 }
 
-supabaseClient.auth.onAuthStateChange((_event, session) => {
-    if (session) {
-        setTimeout(loadAccount, 0);
-    }
+supabaseClient.auth.onAuthStateChange(() => {
+    setTimeout(() => loadAccount(), 0);
 });
 
 loadAccount();
