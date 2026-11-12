@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARK Injector</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">MARK<span>INJECTOR</span></div>
+        <div id="status">Не авторизован</div>
+    </header>
+
+    <main>
+        <section class="panel" id="authPanel">
+            <h1>Добро пожаловать</h1>
+            <p>Войдите в аккаунт или создайте новый</p>
+
+            <input id="email" type="email" placeholder="Email">
+            <input id="password" type="password" placeholder="Пароль">
+
+            <button onclick="login()">Войти</button>
+            <button class="secondary" onclick="register()">Регистрация</button>
+
+            <p id="authMessage"></p>
+        </section>
+
+        <section class="panel hidden" id="accountPanel">
+            <h1>Личный кабинет</h1>
+            <p id="accountEmail"></p>
+            <p>Ваша роль: <strong id="accountRole"></strong></p>
+
+            <button id="downloadButton" class="hidden" onclick="downloadInjector()">
+                Скачать MARK Injector
+            </button>
+
+            <p id="downloadMessage"></p>
+
+            <button class="secondary" onclick="logout()">Выйти</button>
+        </section>
+
+        <section class="panel hidden" id="adminPanel">
+            <h1>Админ-панель</h1>
+            <p>Управление доступом пользователей</p>
+
+            <input id="targetEmail" type="email" placeholder="Email пользователя">
+
+            <button onclick="manageBuyer('grant_buyer')">
+                Выдать Buyer
+            </button>
+
+            <button class="secondary" onclick="manageBuyer('revoke_buyer')">
+                Забрать Buyer
+            </button>
+
+            <p id="adminMessage"></p>
+        </section>
+    </main>
+
+    <footer>© 2026 MARK Injector</footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
